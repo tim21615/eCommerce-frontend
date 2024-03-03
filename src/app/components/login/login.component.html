@@ -1,0 +1,21 @@
+<div class="container pt-5 d-flex justify-content-center">
+  <p-card header="登入表單" [style]="{minWidth: '500px'}">
+    <form [formGroup]="loginData">
+
+      <div>
+        <label for="email">Email</label>
+        <br>
+        <input id="email" class="mb-3" type="text" pInputText formControlName="email" />
+      </div>
+      <div class="mb-4">
+        <label for="password">Password </label>
+        <br>
+        <input id="password" type="password" pInputText formControlName="password" />
+      </div>
+
+      <button pButton class="p-button-sm p-button-success p-button-outlined" label="login" style="font-size: 14px;"
+        (click)="submit()"></button>
+
+    </form>
+  </p-card>
+</div>
