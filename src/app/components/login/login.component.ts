@@ -18,10 +18,23 @@ export class LoginComponent {
     password: ['', Validators.required]
   });
 
+  loginError: boolean = false;
+
   submit() {
-    this.authService.login(this.loginData.value.email!, this.loginData.value.password!)
-      .subscribe(res => {
-        console.log('成功登入');
-      });
+
+    if (this.loginData.valid) {
+      this.authService.login(this.loginData.value.email!, this.loginData.value.password!)
+        .pipe(catchError(error => {
+          this.loginError = true;
+          return throwError(error);
+        })
+        )
+        .subscribe(res => {
+          this.loginError = false;
+          localStorage.setItem('token', res.accessToken);
+        });
+    } else {
+      this.loginData.markAllAsTouched();
+    }
   }
 }

@@ -6,13 +6,20 @@
         <label for="email">Email</label>
         <br>
         <input id="email" class="mb-3" type="text" pInputText formControlName="email" />
+        <p class="text-danger" *ngIf="(loginData.get('email')?.touched) && loginData.get('email')?.invalid">
+          email必填
+        </p>
       </div>
       <div class="mb-4">
         <label for="password">Password </label>
         <br>
         <input id="password" type="password" pInputText formControlName="password" />
+        <p class="text-danger" *ngIf="(loginData.get('password')?.touched) && loginData.get('password')?.invalid">
+          密碼必填
+        </p>
       </div>
 
+      <p class="text-danger" *ngIf="loginError">帳號或密碼輸入錯誤</p>
       <button pButton class="p-button-sm p-button-success p-button-outlined" label="login" style="font-size: 14px;"
         (click)="submit()"></button>
 

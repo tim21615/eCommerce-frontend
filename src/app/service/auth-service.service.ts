@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { LoginResponse } from '../interfaces/login-response';
 
 @Injectable({
   providedIn: 'root'
@@ -16,10 +17,10 @@ export class AuthServiceService {
 
     let url = 'http://localhost:8080/api/auth/login';
 
-    let options = {
-      observe: 'response' as 'response'
-    }
+    // let options = {
+    //   observe: 'response' as 'response'
+    // }
 
-    return this.http.post<any>(url, body, options);
+    return this.http.post<LoginResponse>(url, body);
   }
 }
