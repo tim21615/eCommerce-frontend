@@ -1,5 +1,52 @@
 <p>This is {{username}}
 </p>
+<div class="container">
+  <form class="searchBox mb-4">
+    <input name="searchText" type="text" pInputText class="p-inputtext-sm" placeholder="我想搜尋..."
+      [(ngModel)]="searchText" />&nbsp;
+    <button pButton icon="pi pi-search" class="p-button-rounded p-button-success" (click)="search()"></button>
+  </form>
+  <p-dataView #dv [value]="products" [rows]="12" [paginator]="true">
+    <ng-template let-products pTemplate="list">
+      <div class="row">
+        <div class="col-3" *ngFor="let item of products;">
+          <div class="card p-2">
+            <div>
+              <img class="w-100" [src]="item.productPictureUrl" [alt]="item.productName" />
+            </div>
+            <div class="productInfo px-2 pt-3">
+              <h5>{{ item.productName }}</h5>
+              <div class="d-flex justify-content-between">
+                <div>
+                  <i class="pi pi-tag"></i>
+                  <span class="font-semibold" style="font-size: 12px; color: #777">&ensp; {{ item.productType }}</span>
+                </div>
+                <div>
+                  <p-tag [value]="item.inventoryStatus | stock" [severity]="getSeverity(item)"></p-tag>
+                </div>
+              </div>
+
+              <div class="flex sm:flex-column align-items-center sm:align-items-end gap-3 sm:gap-2">
+                <span class="text-2xl font-semibold">{{ 'NT$' + item.productPrice }}</span>
+
+              </div>
+
+            </div>
+            <div class="text-center mt-3">
+              <button pButton class="p-button-sm p-button-outlined cart-btn"
+                [disabled]="item.inventoryStatus === 'OUTOFSTOCK'">加入購物車</button>
+            </div>
+          </div>
+
+        </div>
+
+
+
+      </div>
+
+    </ng-template>
+  </p-dataView>
+</div>
 
 <button pButton class="p-button-sm p-button-info p-button-outlined" label="登出" style="font-size: 14px;"
   (click)="logout()"></button>
