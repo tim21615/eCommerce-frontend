@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { LoginResponse } from '../interfaces/login-response';
+import { LoginResponse, User } from '../interfaces/login-response';
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +8,11 @@ import { LoginResponse } from '../interfaces/login-response';
 export class AuthServiceService {
 
   constructor(private http: HttpClient) { }
+
+  getUser() {
+    let url = 'http://localhost:8080/user';
+    return this.http.get<User>(url);
+  }
 
   login(email: string, password: string) {
     let body = {
@@ -22,5 +27,13 @@ export class AuthServiceService {
     // }
 
     return this.http.post<LoginResponse>(url, body);
+  }
+
+  logout() {
+    if (localStorage.getItem('token')) {
+      localStorage.removeItem('token');
+    }
+
+    window.location.reload();
   }
 }
