@@ -21,6 +21,14 @@ export class LoginComponent {
 
   loginError: boolean = false;
 
+  ngOnInit(): void {
+    this.authService.getUser().subscribe(user => {
+      if (user !== null) {
+        this.router.navigate(['home']);
+      }
+    });
+  }
+
   submit() {
 
     if (this.loginData.valid) {

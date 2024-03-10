@@ -1,0 +1,29 @@
+<p-table [value]="cartList" [tableStyle]="{'min-width': '60rem'}">
+  <ng-template pTemplate="caption">
+    <div class="flex align-items-center justify-content-between">
+      購物車清單
+    </div>
+  </ng-template>
+  <ng-template pTemplate="header">
+    <tr>
+      <th>商品名</th>
+      <th>商品圖片</th>
+      <th>金額</th>
+      <th>訂購數量</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-cart>
+    <tr>
+      <td>{{cart.productName}}</td>
+      <td><img [src]="cart.productPictureUrl" [alt]="cart.productName" width="100" class="shadow-4" /></td>
+      <td>{{cart.productPrice | currency:'USD'}}</td>
+      <td>{{cart.quantity}}</td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="summary">
+    <div class="flex flex-row align-items-center justify-content-center">
+      <p>共有 {{cartList ? cartList.length : 0 }} 件商品.</p>
+      <button pButton class="p-button-sm p-button-danger" label="前往結帳" style="font-size: 14px;"></button>
+    </div>
+  </ng-template>
+</p-table>

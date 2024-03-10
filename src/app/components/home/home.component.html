@@ -34,7 +34,8 @@
             </div>
             <div class="text-center mt-3">
               <button pButton class="p-button-sm p-button-outlined cart-btn"
-                [disabled]="item.inventoryStatus === 'OUTOFSTOCK'">加入購物車</button>
+                [disabled]="item.inventoryStatus === 'OUTOFSTOCK'"
+                (click)="addToCart(item.productId, item.stock)">加入購物車</button>
             </div>
           </div>
 

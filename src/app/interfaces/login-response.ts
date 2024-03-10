@@ -6,7 +6,6 @@ export interface LoginResponse {
 export interface User {
   memberId: number;
   email: string;
-  password: string;
   name: string;
   age: number;
 }

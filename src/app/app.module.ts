@@ -17,6 +17,11 @@ import { DataViewModule } from 'primeng/dataview';
 import { TagModule } from 'primeng/tag';
 import { StockPipe } from './pipe/stock.pipe';
 import { CommonModule } from '@angular/common';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CartComponent } from './components/cart/cart.component';
+import { TableModule } from 'primeng/table';
 
 @NgModule({
   declarations: [
@@ -24,7 +29,8 @@ import { CommonModule } from '@angular/common';
     LoginComponent,
     RegisterComponent,
     HomeComponent,
-    StockPipe
+    StockPipe,
+    CartComponent
   ],
   imports: [
     BrowserModule,
@@ -37,13 +43,16 @@ import { CommonModule } from '@angular/common';
     DataViewModule,
     TagModule,
     CommonModule,
-    FormsModule
+    FormsModule,
+    ToastModule,
+    BrowserAnimationsModule,
+    TableModule
   ],
   providers: [{ provide: ErrorHandler, useClass: ErrorHandleService }, {
     provide: HTTP_INTERCEPTORS,
     useClass: ApiHeaderInterceptor,
     multi: true
-  }],
+  }, MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
